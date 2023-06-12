@@ -1,7 +1,7 @@
 import axios from 'axios'
 import './App.css'
 import Header from './componenst/Header'
-import ModalForm from './componenst/modalForm'
+import ModalForm from './componenst/ModalForm'
 import { useEffect, useState } from 'react'
 import UserlList from './componenst/UserlList'
 
