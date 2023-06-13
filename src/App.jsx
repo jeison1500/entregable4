@@ -4,6 +4,7 @@ import Header from './componenst/Header'
 import ModalForm from './componenst/ModalForm'
 import { useEffect, useState } from 'react'
 import UserlList from './componenst/UserlList'
+import swal from 'sweetalert'
 
 
 
@@ -27,6 +28,8 @@ function App() {
   const [user, setUser] = useState([])
 
 
+  
+
   const changeShowModal = () => setIsShowModal(!isShowModal)    
 
 
@@ -44,13 +47,22 @@ function App() {
 
     axios.post(url, data)
       .then(() => {
-        alert('Usuario Creado con exito!')
-       getAllUsers()
+        getAllUsers()
+        swal({
+          title: 'Usuario Creado con exito!',
+          icon: 'success',
+          button: 'Aceptar'
+        })
        
       resetModalForm(reset)
       
       })
-      .catch((err) => {alert('No se pudo crear el usuario.')})
+      .catch((err) => 
+      swal({
+        title: 'No se Pudo Crear el Usuario!',
+        icon: 'error',
+        button: 'Aceptar'
+      }))
   
       
   }
@@ -60,11 +72,20 @@ function App() {
 
     axios.delete(url)
       .then(() => {
-        alert('Usuario Eliminado Satisfactoriamente!')
-        getAllUsers()
+       getAllUsers()
+       swal({
+        title: 'Usuario Eliminado Satisfactoriamente!',
+        icon: 'success',
+        button: 'Aceptar'})
+      
       })
   
-      .catch((err) => {alert('Usuario No Eliminado.')})
+      .catch((err) => 
+      swal({
+        title: 'Usuario! No Eliminado',
+        icon: 'error',
+        button: 'Aceptar'
+      }))
   }
 
 
@@ -75,10 +96,17 @@ function App() {
         .then(() => 
           getAllUsers(),
           resetModalForm(reset),
-          alert('Usuario Actualizado Satisfactoriamente!')
+          swal({
+            title: 'Usuario Actualizado con Exito',
+            icon: 'success',
+            button: 'Aceptar'})
         )
-        .catch((err) => {alert('Usuario No Actualizado.')})
-
+        .catch((err) => 
+        swal({
+          title: 'Usuario! No Eliminado',
+          icon: 'error',
+          button: 'Aceptar'
+        }))
     }
 
 
